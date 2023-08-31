@@ -152,6 +152,7 @@ const options = {
 
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
         queryParamSeparator: "&",
+        keyValueSeparator: "=",
         pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
