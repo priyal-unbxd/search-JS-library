@@ -44,6 +44,8 @@ const reRender = function () {
         breadcrumbWrapper
     } = this;
     
+    const paginationType = this.getPaginationType();
+    
     if (results && results.numberOfProducts === 0) {
         let redirect = this.state.responseObj.redirect || {};
         if (Object.keys(redirect).length) {
@@ -82,7 +84,7 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    if (pagination.type !== "INFINITE_SCROLL") {
+    if (paginationType !== "INFINITE_SCROLL") {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });

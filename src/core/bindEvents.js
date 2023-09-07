@@ -95,8 +95,10 @@ function bindEvents() {
             this.onPageViewTypeClick.bind(this)
         )
     }
-
-    if (this.options.pagination.type === 'INFINITE_SCROLL' || this.options.pagination.type === "CLICK_N_SCROLL") {
+    
+    const paginationType = this.getPaginationType();
+    
+    if (paginationType === 'INFINITE_SCROLL' || paginationType === "CLICK_N_SCROLL") {
         this.setUpInfiniteScroll()
     }
 
