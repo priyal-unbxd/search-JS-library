@@ -18,25 +18,32 @@ function bindEvents() {
         selectedFacets
     } = this.options;
     if (searchBoxEl) {
-        searchBoxEl.addEventListener("keydown", (e) => {
+        searchBoxEl.removeEventListener("keydown", this.state.searchBoxRef);
+        let searchListener = (e) => {
             const val = e.target.value;
             if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
                 if (val !== "") {
                     this.setInputValue.bind(this)();
                 }
             }
-        });
+        }
+        this.state.searchBoxRef = searchListener;
+        searchBoxEl.addEventListener("keydown", searchListener);
     }
     if (pagination.enabled) {
+        let paginationListener = this.paginationAction.bind(this)
         this.paginationWrappers.forEach((wrapper) => {
+            console.log("wrapper",wrapper , pagination.action);
+            wrapper.removeEventListener(pagination.action,this.state.paginationRef )
             this.delegate(
                 wrapper,
                 pagination.action,
                 `.${pagination.pageClass}`,
-                this.paginationAction.bind(this)
+                paginationListener
             )
         });
     }
+
     if (facet.facetsEl) {
         this.facetWrappers.forEach(wrapper => {
             this.delegate(wrapper, facet.facetAction, `.${facet.facetClass}`, this.findChangedFacet.bind(this));
@@ -46,10 +53,14 @@ function bindEvents() {
         });
     }
     if (searchButtonEl) {
-        searchButtonEl.addEventListener(searchTrigger, this.setInputValue.bind(this));
+        searchButtonEl.removeEventListener(searchTrigger , this.state.searchButtonRef);
+        let searchButtonListener = this.setInputValue.bind(this);
+        this.state.searchButtonRef = searchButtonListener;
+        searchButtonEl.addEventListener(searchTrigger, searchButtonListener);
     }
     if (spellCheck.el) {
         this.spellCheckWrappers.forEach(wrapper => {
+            
             this.delegate(wrapper, 'click', `.${spellCheck.selectorClass}`, this.setSuggestion.bind(this));
         });
     }
