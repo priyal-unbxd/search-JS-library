@@ -4,9 +4,11 @@ export default function(){
             facet = {}
         } = this.options;
         const {
-            defaultOpen,
             applyMultipleFilters            
         } = facet;
+        
+        const defaultOpen = this.getDefaultOpen();
+        
         const {
             expandedFacets,
             lastAction

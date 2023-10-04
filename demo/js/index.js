@@ -408,10 +408,8 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     
-    // siteKey: "demo-unbxd700181503576558",
-    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    siteKey: "ss-unbxd-betta-prod35741656525409",
-    apiKey: "aed56fa947d16c170c4b66a8e558ec49",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
   
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -575,7 +573,7 @@ window.unbxdSearch = new UnbxdSearch({
         // type: 'FIXED_PAGINATION',
         type: 'INFINITE_SCROLL',
         el: document.querySelector('.unxPagination'),
-        // usePageAndCount: false,
+                // usePageAndCount: false,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
@@ -587,7 +585,7 @@ window.unbxdSearch = new UnbxdSearch({
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
         queryParamSeparator: "~",
-        searchQueryParam: {
+                searchQueryParam: {
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: "query"
@@ -663,7 +661,7 @@ window.unbxdSearch = new UnbxdSearch({
     sort: {
         enabled: true,
         el: document.getElementById("sortWrapper"),
-        options: [ {
+                options: [ {
             value: "price desc",
             text: "Price High to Low"
         },

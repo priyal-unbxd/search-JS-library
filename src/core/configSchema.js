@@ -19,7 +19,7 @@ export const paginationSchema = {
             required: (pagination) => {
                 return pagination.enabled && pagination.type !== "INFINITE_SCROLL";
             },
-            datatype: "element",
+            datatype: "element"
         },
         template: {
             required: (pagination) => {
@@ -52,7 +52,12 @@ export const paginationSchema = {
             required: (pagination) => {
                 return pagination.enabled && pagination.type === "INFINITE_SCROLL"
             },
-            datatype: "number"
+            datatype: "number",
+            customValidations: (pagination) => {
+                if (pagination.heightDiffToTriggerNextPage > 1000){
+                    console.error(`SDK Config error in pagination: heightDiffToTriggerNextPage should not be more than 1000 , resetting it to 1000.`)
+                }
+            }
         },
         action: {
             required: (pagination)=>{
@@ -584,16 +589,6 @@ export const facetsParamSchema = {
             datatype: "string",
             allowedOptions: ALLOWED_VALUE_SEPARATORS
         },
-        // facetKeyValueSeperator:{
-        //     required: false,
-        //     datatype: "string",
-        //     customValidations: (facetsParam)=>{
-        //         const allowedFacetKeyValueSeperator = ["::"];
-        //         if (!allowedFacetKeyValueSeperator.includes(facetsParam.facetKeyValueSeperator)) {
-        //             console.error(`SDK Config error in facetsParam: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
-        //         }
-        //     }
-        // },
         keyReplacer: {
             required: false,
             datatype: "object",

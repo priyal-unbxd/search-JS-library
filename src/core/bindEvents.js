@@ -17,6 +17,11 @@ function bindEvents() {
         breadcrumb,
         selectedFacets
     } = this.options;
+    
+    const sortAction = this.getSortAction();
+    const pagesizeAction = this.getPageSizeAction();
+    const pagiAction = this.getPaginationAction();
+    
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
@@ -31,7 +36,7 @@ function bindEvents() {
         this.paginationWrappers.forEach((wrapper) => {
             this.delegate(
                 wrapper,
-                pagination.action,
+                pagiAction,
                 `.${pagination.pageClass}`,
                 this.paginationAction.bind(this)
             )
@@ -61,7 +66,7 @@ function bindEvents() {
     );
     if (sort.el) {
         this.sortWrappers.forEach(wrapper => {
-            this.delegate(wrapper, sort.action, `.${sort.sortClass}`, this.sortAction.bind(this));
+            this.delegate(wrapper, sortAction, `.${sort.sortClass}`, this.sortAction.bind(this));
         });
     }
 
@@ -104,7 +109,7 @@ function bindEvents() {
 
     this.delegate(
         this.pageSizeWrapper,
-        pagesize.action,
+        pagesizeAction,
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );

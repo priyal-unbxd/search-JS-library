@@ -5,9 +5,9 @@ const renderDidYouMean = function () {
         } = this.state;
         const pages = this.getPaginationInfo() || {};
         const didYouMean = this.getDidYouMeanFromResponse() || [];
-        const {
-            type
-        } = this.options.pagination;
+        
+        const paginationType = this.getPaginationType();
+        
         const {
             enabled
         } = this.options.spellCheck;
@@ -18,7 +18,7 @@ const renderDidYouMean = function () {
             loadedFromSuggestion,
             lastDidYouMean
         } = viewState;
-        if (type !== "FIXED_PAGINATION" && pages) {
+        if (paginationType !== "FIXED_PAGINATION" && pages) {
             const {
                 start,
                 productsLn
