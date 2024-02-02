@@ -54,7 +54,7 @@ const reRender = function () {
         }
         onEvent(this, beforeNoResultRender);
         this.viewState.noResultLoaded = true;
-        
+        // this.options.facet.facetsEl.innerHTML = ""
         if(this.options.noResults.el) {
             noResults.el.classList.add(noResultCss)
             searchResultsWrapper.innerHTML = "";

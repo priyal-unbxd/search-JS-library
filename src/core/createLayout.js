@@ -16,16 +16,16 @@ const createLayout = function () {
         this.paginationWrappers.push(elem);
         return elem;
     }
-    const getfacetWrappers = () => {
-        const elem = this.createFacetWrapper();
-        this.facetWrappers.push(elem);
-        return elem;
-    };
-    const getSortElementWrappers = () => {
-        const elem = this.createSortWrapper();
-        this.sortWrappers.push(elem);
-        return elem;
-    };
+    // const getfacetWrappers = () => { //As how we were doing before.
+    //     const elem = this.createFacetWrapper();
+    //     this.facetWrappers.push(elem);
+    //     return elem;
+    // };
+    // const getSortElementWrappers = () => { As how we were doing before.
+    //     const elem = this.createSortWrapper();
+    //     this.sortWrappers.push(elem);
+    //     return elem;
+    // };
     const getSelectedFacetsWrappers = () => {
         const elem = this.createSelectedFacetWrapper();
         this.selectedFacetWrappers.push(elem);
@@ -74,7 +74,8 @@ const createLayout = function () {
         }
         els.forEach(facetEl => {
             facetEl.innerHTML = ``;
-            facetEl.appendChild(getfacetWrappers());
+            this.facetWrappers.push(facetEl);
+            // facetEl.appendChild(getfacetWrappers()); As how we were doing before.
         });
     }
     const {
@@ -87,7 +88,10 @@ const createLayout = function () {
         }
         els.forEach(sortEl => {
             sortEl.innerHTML = ``;
-            sort.enabled && sortEl.appendChild(getSortElementWrappers());
+            if(sort.enabled){
+                this.sortWrappers.push(sortEl);
+            }
+            // sort.enabled && sortEl.appendChild(getSortElementWrappers()); As how we were doing before.
         });
     }
     if (facet.selectedFacetsEl) {
