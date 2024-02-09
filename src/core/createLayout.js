@@ -4,18 +4,18 @@ const createLayout = function () {
     this.searchResultsWrapper = this.createtSearchWrapper();
     this.bannerWrapper = this.createBannerWrapper();
     this.breadcrumbWrapper = this.createBreadcrumbWrapper();
-    this.pageSizeWrapper = this.createPageSizeWrapper();
-    this.productViewTypeWrapper = this.createProductViewTypeWrapper()
+    // this.pageSizeWrapper = this.createPageSizeWrapper();
+    // this.productViewTypeWrapper = this.createProductViewTypeWrapper()
     this.paginationWrappers = [];
     this.facetWrappers = [];
     this.sortWrappers = [];
     this.selectedFacetWrappers = [];
     this.spellCheckWrappers = [];
-    const getPaginationWrapper = () => {
-        const elem = this.createPaginationWrapper();
-        this.paginationWrappers.push(elem);
-        return elem;
-    }
+    // const getPaginationWrapper = () => {
+    //     const elem = this.createPaginationWrapper();
+    //     this.paginationWrappers.push(elem);
+    //     return elem;
+    // }
     // const getfacetWrappers = () => { //As how we were doing before.
     //     const elem = this.createFacetWrapper();
     //     this.facetWrappers.push(elem);
@@ -146,11 +146,15 @@ const createLayout = function () {
     }
     if (pagesize.el) {
         pagesize.el.innerHTML = ``;
-        pagesize.enabled && pagesize.el.appendChild(this.pageSizeWrapper);
+        // pagesize.enabled && pagesize.el.appendChild(this.pageSizeWrapper);
+        if(pagesize.enabled){
+            this.pageSizeWrapper = pagesize.el;
+        }
     }
     if (productView.el) {
         productView.el.innerHTML = ``;
-        productView.el.appendChild(this.productViewTypeWrapper)
+        this.productViewTypeWrapper = productView.el;
+        // productView.el.appendChild(this.productViewTypeWrapper)
     }
     const {
         el
@@ -162,7 +166,10 @@ const createLayout = function () {
         }
         els.forEach(element => {
             element.innerHTML = ``;
-            pagination.enabled && element.appendChild(getPaginationWrapper());
+            // pagination.enabled && element.appendChild(getPaginationWrapper());
+            if(pagination.enabled){
+                this.paginationWrappers.push(element);
+            }
         });
     }
 

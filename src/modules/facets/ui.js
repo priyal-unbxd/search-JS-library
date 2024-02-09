@@ -101,6 +101,11 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
         applyButtonText,
         clearButtonText,
     } = facet;
+    
+    const {
+        openFacet,
+        closeFacet
+    } = this.cssList;
     // const {
     //     actionBtnClass,
     //     actionChangeClass
@@ -133,10 +138,18 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
             collapsibleUI = `<div class="UNX-facet-header ${this.options.actionBtnClass || actionBtnClass} UNX-facet-close"  data-facet-name="${facetName}" data-facet-action="facetOpen"> <h3>${displayName}</h3></div>`;
         }
     }
+    let styles = (isExpanded) ? openFacet : closeFacet;
+    if (!isCollapsible) {
+        styles = "";
+    }
     if(isSearchable && facetSearchTxt !== null) {
         searchInput = `<div class="UNX-searchable-facets"><label class="UNX-hidden" for="${facetName}_searchBox">${searchPlaceHolder}</label><input  id="${facetName}_searchBox" name="${facetName}_searchBox" data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass || this.options.actionBtnClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
-    }
-    return [`<div class="UNX-text-facet-wrap">`,
+    } 
+    // <div class="${facetName} UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ${styles}"></div>
+    // console.log("")
+    // <div class="${facetName} UNX-facet-item-d range-facets-block ${styles}">
+    return [`<div class="UNX-facet-item-d ${facetType === "range" ? "range-facets-block" : ""} ${facetType === "category" ? "UNX-multilivel-facets-block UNX-multilevel-block": ""} ${facetName} ${styles}"`,
+    `<div class="UNX-text-facet-wrap">`,
                 collapsibleUI,
                 `<div class="UNX-facets-all">`,
                     searchInput,
@@ -144,7 +157,8 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
                     viewMoreUi,
                     `<div class="UNX-facet-footer">${applyBtn} ${clearUI}</div>`,
                 `</div>`,
-           `</div>`].join('');
+           `</div>`,
+        `</div>`].join('');
 }
 
 export {

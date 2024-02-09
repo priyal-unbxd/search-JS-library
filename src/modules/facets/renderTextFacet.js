@@ -4,20 +4,20 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
     try{
         let valuesUI = [];
         const {
-            facetName,
+            // facetName,
             values = []
         } = facetItem;
-        const {
-            openFacet,
-            closeFacet
-        } = this.cssList;
+        // const {
+        //     openFacet,
+        //     closeFacet
+        // } = this.cssList;
         const self = this;
         const {
             facet
         } = this.options;
-        const {
-            isCollapsible
-        } = facet;
+        // const {
+        //     isCollapsible
+        // } = facet;
         let selected = false;
         if (values.length > 0) {
             valuesUI = values.map((value = {}) => {
@@ -37,11 +37,11 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
         }
         facetItem.isSelected = selected;
         const facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''), isExpanded, facetSearchTxt, facet);
-        let styles = (isExpanded) ? openFacet : closeFacet;
-        if (!isCollapsible) {
-            styles = "";
-        }
-        return `<div class="UNX-facet-item-d ${facetName} ${styles}">${facetUI}</div>`;
+        // let styles = (isExpanded) ? openFacet : closeFacet;
+        // if (!isCollapsible) {
+        //     styles = "";
+        // }
+        return `${facetUI}`;
     }catch(err){
         this.onError("facets > renderTextFacet.js", err,libEvents.runtimeError);
     }
