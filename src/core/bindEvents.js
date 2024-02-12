@@ -105,13 +105,19 @@ function bindEvents() {
     if (paginationType === 'INFINITE_SCROLL' || paginationType === "CLICK_N_SCROLL") {
         this.setUpInfiniteScroll()
     }
+    
+    if (pagesize.enabled && pagesize.el){
+        this.pageSizeWrapper.forEach((wrapper)=>{
+            this.delegate(
+                wrapper,
+                pagesize.action,
+                `.${pagesize.pageSizeClass}`,
+                this.onClickPageSize.bind(this)
+            );
+        })
+    }
 
-    this.delegate(
-        this.pageSizeWrapper,
-        pagesize.action,
-        `.${pagesize.pageSizeClass}`,
-        this.onClickPageSize.bind(this)
-    );
+    
     if (!this.viewState.initialised) {
         window.addEventListener('popstate', this.onLocationChange.bind(this), false);
         // if(this.options.hashMode) {

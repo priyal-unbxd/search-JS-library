@@ -4,7 +4,7 @@ const createLayout = function () {
     this.searchResultsWrapper = this.createtSearchWrapper();
     this.bannerWrapper = this.createBannerWrapper();
     this.breadcrumbWrapper = this.createBreadcrumbWrapper();
-    // this.pageSizeWrapper = this.createPageSizeWrapper();
+    this.pageSizeWrapper = [];
     // this.productViewTypeWrapper = this.createProductViewTypeWrapper()
     this.paginationWrappers = [];
     this.facetWrappers = [];
@@ -144,13 +144,25 @@ const createLayout = function () {
         }
 
     }
-    if (pagesize.el) {
-        pagesize.el.innerHTML = ``;
-        // pagesize.enabled && pagesize.el.appendChild(this.pageSizeWrapper);
-        if(pagesize.enabled){
-            this.pageSizeWrapper = pagesize.el;
+    
+    const {
+        el: pagesizeEls 
+    } = pagesize;
+    
+    if(pagesizeEls){
+        let els = pagesizeEls;
+        if (!pagesizeEls.length) {
+            els = [pagesizeEls];
         }
+        
+        els.forEach((element)=>{
+            element.innerHTML = ``;
+            if(pagesize.enabled){
+                this.pageSizeWrapper.push(element);
+            }
+        })
     }
+    
     if (productView.el) {
         productView.el.innerHTML = ``;
         this.productViewTypeWrapper = productView.el;
