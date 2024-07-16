@@ -15,6 +15,11 @@ nav_order: 9
 1. TOC
 {:toc}
 
+{: .note-title }
+> Important
+>
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations). Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the versions of integrations. Since we are gradually migrating all our customers toward our new upgraded SDKs, we would slowly **deprecate** the older version.
+
 ---
 # v2.1.9
 
