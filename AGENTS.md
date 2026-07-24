@@ -65,7 +65,7 @@
 ## Anti-patterns
 - Do not hand-edit files in `public/dist/` — they are webpack build artifacts; edit `src/` and rebuild instead
 - Do not insert HTML into the DOM without passing it through `dompurify` first, matching the existing pattern in render modules
-- Do not assume `npm test` runs unit tests — it currently only runs `webpack --config ./webpack/webpack.dev.build.js` (a build/compile check). [FILL: clarify whether real unit tests exist elsewhere or are planned]
+- Do not assume `npm test` runs unit tests — it currently only runs `webpack --config ./webpack/webpack.dev.build.js` (a build/compile check).
 - Do not bypass `configSchema.js`/`validateConfigs.js` when adding new config options — every new option needs a schema entry (datatype, `required`, `allowedOptions`, `customValidations`) so misconfigurations surface as console errors, per existing convention
 - Do not introduce new UI templates that skip the `src/common/constants/` CSS class/test-ID constants in favor of hardcoded strings — module templates consistently reference these constants for consistency and testability
 - Do not add framework dependencies (React, Vue, etc.) — this is intentionally a vanilla-JS, dependency-light DOM library
